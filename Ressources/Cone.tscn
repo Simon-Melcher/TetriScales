@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2ty4vnhgxyer"]
+
+[ext_resource type="Texture2D" uid="uid://b4ete87gtfr12" path="res://Textures/Cone.png" id="1_hgpv4"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_tfccl"]
+points = PackedVector2Array(-64, 32, -4, -32, 4, -32, 64, 32)
+
+[node name="Cone" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hgpv4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_tfccl")
