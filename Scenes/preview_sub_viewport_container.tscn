@@ -11,6 +11,7 @@ offset_bottom = 40.0
 script = ExtResource("1_jw67m")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
 handle_input_locally = false
 size = Vector2i(200, 222)
 render_target_update_mode = 4
@@ -29,6 +30,9 @@ offset_top = -23.0
 offset_right = 37.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "Block 1x1"
 
@@ -40,6 +44,9 @@ offset_left = -37.0
 offset_right = 37.0
 offset_bottom = 45.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "Next"
 
