@@ -13,15 +13,13 @@ const small_i_piece = preload("res://Ressources/Box_test.tscn")
 
 var selected_block = null
 
+var base_plate_position
+
+var base_plate_collider
+var base_plate_collision_position
+
 func _ready() -> void:
-	var screen_size = get_tree().root.get_viewport().size
-	print("screen_size", screen_size)
-
 	GlobalSignals.spawn_newblock.connect(spawn_new_block)
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	body.queue_free()
-	#pass
 
 func _on_block_timer_timeout() -> void:
 	spawn_new_block()
