@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4leo8yxmxvy7"]
+
+[ext_resource type="Texture2D" uid="uid://dakd7maboiv4j" path="res://Textures/Trapez.png" id="1_4maqt"]
+
+[node name="Node2D" type="StaticBody2D"]
+
+[node name="Trapez" type="Sprite2D" parent="."]
+texture = ExtResource("1_4maqt")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(128, 0, 128, 128, -128, 128, -128, 0, -16, -128, 16, -128)

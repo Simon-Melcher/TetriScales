@@ -14,11 +14,6 @@ const Block_3x1 = preload("res://Scenes/block_3x1.tscn")
 var selected_block = null
 var next_block = null
 
-var base_plate_position
-
-var base_plate_collider
-var base_plate_collision_position
-
 func _ready() -> void:
 	GlobalSignals.spawn_newblock.connect(spawn_new_block)
 	next_block = instantiate_random_block()
@@ -36,13 +31,8 @@ func instantiate_random_block() -> RigidBody2D:
 	
 func spawn_new_block():
 	print("Spawning new Block")
-	#var b = simple_block.instantiate()
 	var b = next_block
-	#b.position = event.position
-	#b.position = Vector2(randf_range(0, screen_size.x), 0)
-	#b.linear_velocity = Vector2.DOWN * 50
-	#add_child(b)
-	b.position = Vector2(0,-200)
+	b.position = Vector2(0,-300)
 	selected_block = b
 	add_child(b)
 	next_block = instantiate_random_block()

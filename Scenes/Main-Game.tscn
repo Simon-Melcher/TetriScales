@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://djepc3g7bcvfo" path="res://Scripts/box_script.gd" id="2_mjuhr"]
 [ext_resource type="PackedScene" uid="uid://kwsbpinh6omt" path="res://Ressources/base_plate.tscn" id="3_mjuhr"]
 [ext_resource type="Texture2D" uid="uid://hyed7eb0akgl" path="res://Textures/BoxV1.png" id="3_ntdyd"]
-[ext_resource type="PackedScene" uid="uid://b2ty4vnhgxyer" path="res://Ressources/cone.tscn" id="4_ntdyd"]
 [ext_resource type="PackedScene" uid="uid://m1n40kyskpax" path="res://Ressources/kill_zone.tscn" id="5_li234"]
+[ext_resource type="PackedScene" uid="uid://b4leo8yxmxvy7" path="res://Ressources/scale_base.tscn" id="7_0go7v"]
 [ext_resource type="Texture2D" uid="uid://bdwe06rxq1ic" path="res://icon.svg" id="8_0go7v"]
 [ext_resource type="Script" uid="uid://bitv8h2q18r7f" path="res://Scripts/lost_blocks.gd" id="8_ntdyd"]
 
@@ -37,23 +37,23 @@ ScoreLabel = NodePath("User Interface/Score")
 [node name="Objects" type="Node" parent="."]
 
 [node name="Base_Plate" parent="Objects" instance=ExtResource("3_mjuhr")]
-position = Vector2(0, 365)
+position = Vector2(1, 343)
 mass = 10.0
 
-[node name="Cone" parent="Objects" instance=ExtResource("4_ntdyd")]
-position = Vector2(0, 413)
-
 [node name="kill_zone_below" parent="Objects" node_paths=PackedStringArray("lost_block_counter") instance=ExtResource("5_li234")]
-position = Vector2(-433, 676)
+position = Vector2(-427, 776)
 lost_block_counter = NodePath("../../User Interface/Lost Blocks")
 
 [node name="kill_zone_right" parent="Objects" instance=ExtResource("5_li234")]
-position = Vector2(722, -456)
+position = Vector2(738, -359)
 rotation = 1.5708
 
 [node name="kill_zone_left" parent="Objects" instance=ExtResource("5_li234")]
-position = Vector2(-620, -457)
+position = Vector2(-620, -360)
 rotation = 1.5708
+
+[node name="Node2D" parent="Objects" instance=ExtResource("7_0go7v")]
+position = Vector2(0, 480)
 
 [node name="Main_Camera" type="Camera2D" parent="."]
 position = Vector2(31, 108)
@@ -67,12 +67,14 @@ offset_bottom = 40.0
 [node name="Score" type="Label" parent="User Interface"]
 z_index = 10
 layout_mode = 0
-offset_left = -29.0
-offset_top = 465.0
-offset_right = 32.0
-offset_bottom = 488.0
+offset_left = -128.0
+offset_top = 478.0
+offset_right = 125.0
+offset_bottom = 588.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
 script = SubResource("GDScript_li234")
 
 [node name="Lost Blocks" type="Label" parent="User Interface"]
