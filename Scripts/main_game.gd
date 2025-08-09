@@ -14,17 +14,15 @@ const Block_3x1 = preload("res://Scenes/block_3x1.tscn")
 var selected_block = null
 var next_block = null
 
-func _ready() -> void:
-	var screen_size = get_tree().root.get_viewport().size
-	print("screen_size", screen_size)
+var base_plate_position
 
+var base_plate_collider
+var base_plate_collision_position
+
+func _ready() -> void:
 	GlobalSignals.spawn_newblock.connect(spawn_new_block)
 	var n = instantiate_random_block()
 	set_next_block(n)
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	body.queue_free()
-	#pass
 
 func _on_block_timer_timeout() -> void:
 	spawn_new_block()

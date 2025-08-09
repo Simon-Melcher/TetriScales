@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://clryc0fldl3cb" path="res://Scripts/main_game.gd" id="1_qxxgd"]
 [ext_resource type="Script" uid="uid://djepc3g7bcvfo" path="res://Scripts/box_script.gd" id="2_mjuhr"]
-[ext_resource type="PackedScene" uid="uid://kwsbpinh6omt" path="res://Ressources/Long_Box_Test.tscn" id="3_mjuhr"]
+[ext_resource type="PackedScene" uid="uid://kwsbpinh6omt" path="res://Ressources/base_plate.tscn" id="3_mjuhr"]
 [ext_resource type="Texture2D" uid="uid://hyed7eb0akgl" path="res://Textures/BoxV1.png" id="3_ntdyd"]
-[ext_resource type="PackedScene" uid="uid://b2ty4vnhgxyer" path="res://Ressources/Cone.tscn" id="4_ntdyd"]
+[ext_resource type="PackedScene" uid="uid://b2ty4vnhgxyer" path="res://Ressources/cone.tscn" id="4_ntdyd"]
 [ext_resource type="PackedScene" uid="uid://m1n40kyskpax" path="res://Ressources/kill_zone.tscn" id="5_li234"]
 [ext_resource type="PackedScene" uid="uid://cg2jfxm4m4f6u" path="res://Scenes/preview_sub_viewport_container.tscn" id="8_0go7v"]
 [ext_resource type="Script" uid="uid://bitv8h2q18r7f" path="res://Scripts/lost_blocks.gd" id="8_ntdyd"]
@@ -42,11 +42,18 @@ mass = 10.0
 
 [node name="Cone" parent="Objects" instance=ExtResource("4_ntdyd")]
 position = Vector2(0, 413)
-freeze = true
 
-[node name="KillZone" parent="Objects" node_paths=PackedStringArray("lost_block_counter") instance=ExtResource("5_li234")]
+[node name="kill_zone_below" parent="Objects" node_paths=PackedStringArray("lost_block_counter") instance=ExtResource("5_li234")]
 position = Vector2(-433, 676)
 lost_block_counter = NodePath("../../User Interface/Lost Blocks")
+
+[node name="kill_zone_right" parent="Objects" instance=ExtResource("5_li234")]
+position = Vector2(722, -456)
+rotation = 1.5708
+
+[node name="kill_zone_left" parent="Objects" instance=ExtResource("5_li234")]
+position = Vector2(-620, -457)
+rotation = 1.5708
 
 [node name="Main_Camera" type="Camera2D" parent="."]
 position = Vector2(31, 108)
