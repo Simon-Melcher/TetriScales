@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddhyph5djqsrc"]
+[gd_scene load_steps=15 format=3 uid="uid://ddhyph5djqsrc"]
 
 [ext_resource type="Script" uid="uid://clryc0fldl3cb" path="res://Scripts/main_game.gd" id="1_qxxgd"]
 [ext_resource type="Script" uid="uid://djepc3g7bcvfo" path="res://Scripts/box_script.gd" id="2_mjuhr"]
@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://hyed7eb0akgl" path="res://Textures/BoxV1.png" id="3_ntdyd"]
 [ext_resource type="PackedScene" uid="uid://m1n40kyskpax" path="res://Ressources/kill_zone.tscn" id="5_li234"]
 [ext_resource type="PackedScene" uid="uid://b4leo8yxmxvy7" path="res://Ressources/scale_base.tscn" id="6_ntdyd"]
-[ext_resource type="AudioStream" uid="uid://cvk4yomed22wf" path="res://Ressources/wood-block-105066.mp3" id="7_dqf7k"]
+[ext_resource type="AudioStream" uid="uid://betkbdqiy2yud" path="res://Ressources/boulder_drop.ogg" id="7_3iggu"]
 [ext_resource type="PackedScene" uid="uid://cg2jfxm4m4f6u" path="res://Scenes/preview_sub_viewport_container.tscn" id="8_0go7v"]
+[ext_resource type="AudioStream" uid="uid://c84asdt0erwig" path="res://Ressources/Suez Crisis.ogg" id="8_3iggu"]
 [ext_resource type="PackedScene" uid="uid://cpjak7ahx5h23" path="res://Ressources/15x15 Background Tile.tscn" id="8_ntdyd"]
 [ext_resource type="Shader" uid="uid://bf8opukbkwppe" path="res://Scenes/Main-Game.gdshader" id="9_0go7v"]
 
@@ -30,16 +31,17 @@ _bundled = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dqf7k"]
 shader = ExtResource("9_0go7v")
 
-[node name="Main-scene" type="Node2D" node_paths=PackedStringArray("ScoreLabel", "LostBlockLabel", "game_over_label", "high_score_label", "exit_button", "restart_button", "audio_player")]
+[node name="Main-scene" type="Node2D" node_paths=PackedStringArray("ScoreLabel", "LostBlockLabel", "game_over_label", "high_score_label", "high_score_info", "exit_button", "restart_button", "audio_player")]
 script = ExtResource("1_qxxgd")
 basic_block = SubResource("PackedScene_0go7v")
 ScoreLabel = NodePath("User Interface/Score")
 LostBlockLabel = NodePath("User Interface/Lost Blocks")
 game_over_label = NodePath("User Interface/game_over_label")
 high_score_label = NodePath("User Interface/game_over_label/high_score_label")
+high_score_info = NodePath("User Interface/Best_Score")
 exit_button = NodePath("User Interface/Exit_Button")
 restart_button = NodePath("User Interface/Restart_Button")
-audio_player = NodePath("Objects/Wood Sound Player")
+audio_player = NodePath("Objects/Block Sound Player")
 
 [node name="Objects" type="Node" parent="."]
 
@@ -70,8 +72,14 @@ position = Vector2(1, 271)
 node_a = NodePath("../Base_Plate")
 node_b = NodePath("../StaticScaleBase")
 
-[node name="Wood Sound Player" type="AudioStreamPlayer" parent="Objects"]
-stream = ExtResource("7_dqf7k")
+[node name="Block Sound Player" type="AudioStreamPlayer" parent="Objects"]
+stream = ExtResource("7_3iggu")
+volume_db = 1.0
+
+[node name="Background Music" type="AudioStreamPlayer" parent="Objects"]
+stream = ExtResource("8_3iggu")
+autoplay = true
+parameters/looping = true
 
 [node name="Main_Camera" type="Camera2D" parent="."]
 
@@ -100,17 +108,30 @@ vertical_alignment = 1
 
 [node name="Lost Blocks" type="Label" parent="User Interface"]
 layout_mode = 0
-offset_left = 176.0
-offset_top = -365.0
-offset_right = 501.0
-offset_bottom = -296.0
+offset_left = 62.0
+offset_top = -300.0
+offset_right = 515.0
+offset_bottom = -231.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 50
 text = "Blocks Lost: 0"
 
+[node name="Best_Score" type="Label" parent="User Interface"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = -376.0
+offset_right = 514.0
+offset_bottom = -307.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "Best Score: 999.99"
+
 [node name="game_over_label" type="Label" parent="User Interface"]
+visible = false
 z_index = 5
 layout_mode = 0
 offset_left = -448.0

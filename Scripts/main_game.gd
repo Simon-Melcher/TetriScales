@@ -5,6 +5,7 @@ extends Node2D
 @export var LostBlockLabel: Label
 @export var game_over_label: Label
 @export var high_score_label: Label
+@export var high_score_info: Label
 
 @export var exit_button: Button
 @export var restart_button: Button
@@ -14,10 +15,13 @@ var base_speed = 300
 
 var score = 0
 var score_multiplier = 1
+var highscore
 
 var lost_blocks = 0
 var game_over_amount = 5
 var game_over = false
+
+var save_path = "user://score.save"
 
 const Block_1x1 = preload("res://Scenes/block_1x1.tscn")
 const Block_2x2_L = preload("res://Scenes/block_2x2_l.tscn")
@@ -38,6 +42,7 @@ func _ready() -> void:
 	restart_button.visible = false
 	exit_button.pressed.connect(close_game)
 	restart_button.pressed.connect(restart_scene)
+	load_score()
 	var n = instantiate_random_block()
 	set_next_block(n)
 
@@ -140,7 +145,10 @@ func _process(delta: float) -> void:
 	if lost_blocks >= game_over_amount and false == game_over:
 		game_over = true
 		game_over_label.visible = true
-		high_score_label.text = "HighScore: %s" % snapped(score,0.01)
+		var current_score = snapped(score,0.01)
+		high_score_label.text = "HighScore: %s" % current_score
+		if(current_score > highscore):
+			save_score(current_score)
 		high_score_label.visible = true
 		exit_button.visible = true
 		restart_button.visible = true
@@ -151,3 +159,17 @@ func _process(delta: float) -> void:
 	else:
 		time = time_out
 		increase_score()
+
+func save_score(highscore):
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_var(highscore)
+
+func load_score():
+	if FileAccess.file_exists(save_path):
+		print("file found")
+		var file = FileAccess.open(save_path, FileAccess.READ)
+		highscore = file.get_var()
+	else:
+		print("file not found")
+		highscore = 0
+	high_score_info.text = "Best Score: %s" % highscore
