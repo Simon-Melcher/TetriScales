@@ -51,8 +51,13 @@ rotation = 1.5708
 position = Vector2(-620, -360)
 rotation = 1.5708
 
-[node name="Node2D" parent="Objects" instance=ExtResource("6_ntdyd")]
+[node name="StaticScaleBase" parent="Objects" instance=ExtResource("6_ntdyd")]
 position = Vector2(0, 480)
+
+[node name="ScalePinJoint2D" type="PinJoint2D" parent="Objects"]
+position = Vector2(1, 343)
+node_a = NodePath("../Base_Plate")
+node_b = NodePath("../StaticScaleBase")
 
 [node name="Main_Camera" type="Camera2D" parent="."]
 position = Vector2(31, 108)
