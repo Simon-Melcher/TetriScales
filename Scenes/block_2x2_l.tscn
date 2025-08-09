@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfp0546au8v2e"]
+
+[ext_resource type="Script" uid="uid://djepc3g7bcvfo" path="res://Scripts/box_script.gd" id="1_fmuor"]
+[ext_resource type="Texture2D" uid="uid://wq87fuq6fc88" path="res://Ressources/block_2x2_L.png" id="1_nv6cg"]
+
+[node name="Block_2x2_L" type="RigidBody2D"]
+script = ExtResource("1_fmuor")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nv6cg")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-1, -1, 63, -1, 63, -63, -63, -63, -63, 63, -1, 63)

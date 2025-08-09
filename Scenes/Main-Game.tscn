@@ -1,11 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddhyph5djqsrc"]
+[gd_scene load_steps=12 format=3 uid="uid://ddhyph5djqsrc"]
 
 [ext_resource type="Script" uid="uid://clryc0fldl3cb" path="res://Scripts/main_game.gd" id="1_qxxgd"]
-[ext_resource type="PackedScene" uid="uid://cejyr1mb44esr" path="res://Ressources/Box_Test.tscn" id="2_li234"]
+[ext_resource type="Script" uid="uid://djepc3g7bcvfo" path="res://Scripts/box_script.gd" id="2_mjuhr"]
 [ext_resource type="PackedScene" uid="uid://kwsbpinh6omt" path="res://Ressources/base_plate.tscn" id="3_mjuhr"]
+[ext_resource type="Texture2D" uid="uid://hyed7eb0akgl" path="res://Textures/BoxV1.png" id="3_ntdyd"]
 [ext_resource type="PackedScene" uid="uid://b2ty4vnhgxyer" path="res://Ressources/cone.tscn" id="4_ntdyd"]
 [ext_resource type="PackedScene" uid="uid://m1n40kyskpax" path="res://Ressources/kill_zone.tscn" id="5_li234"]
+[ext_resource type="Texture2D" uid="uid://bdwe06rxq1ic" path="res://icon.svg" id="8_0go7v"]
 [ext_resource type="Script" uid="uid://bitv8h2q18r7f" path="res://Scripts/lost_blocks.gd" id="8_ntdyd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_metym"]
+size = Vector2(64, 64)
+
+[sub_resource type="PackedScene" id="PackedScene_0go7v"]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(0, 0, 12, 11, 2, 0, 0),
+"editable_instances": [],
+"names": PackedStringArray("Box_Test", "disable_mode", "can_sleep", "contact_monitor", "max_contacts_reported", "script", "RigidBody2D", "Sprite2D", "texture", "CollisionShape2D", "shape", "_on_body_entered", "body_entered"),
+"node_count": 3,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 6, 0, -1, 5, 1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 0, 0, 0, 7, 7, -1, 1, 8, 5, 0, 0, 0, 9, 9, -1, 1, 10, 6, 0),
+"variants": [2, false, true, 1, ExtResource("2_mjuhr"), ExtResource("3_ntdyd"), SubResource("RectangleShape2D_metym")],
+"version": 3
+}
 
 [sub_resource type="GDScript" id="GDScript_li234"]
 script/source = "extends Label
@@ -13,7 +31,7 @@ script/source = "extends Label
 
 [node name="Main-scene" type="Node2D" node_paths=PackedStringArray("ScoreLabel")]
 script = ExtResource("1_qxxgd")
-basic_block = ExtResource("2_li234")
+basic_block = SubResource("PackedScene_0go7v")
 ScoreLabel = NodePath("User Interface/Score")
 
 [node name="Objects" type="Node" parent="."]
@@ -25,13 +43,17 @@ mass = 10.0
 [node name="Cone" parent="Objects" instance=ExtResource("4_ntdyd")]
 position = Vector2(0, 413)
 
-[node name="KillZone" parent="Objects" node_paths=PackedStringArray("lost_block_counter") instance=ExtResource("5_li234")]
+[node name="kill_zone_below" parent="Objects" node_paths=PackedStringArray("lost_block_counter") instance=ExtResource("5_li234")]
 position = Vector2(-433, 676)
 lost_block_counter = NodePath("../../User Interface/Lost Blocks")
 
-[node name="KillZone2" parent="Objects" node_paths=PackedStringArray("lost_block_counter") instance=ExtResource("5_li234")]
-position = Vector2(-866, 1352)
-lost_block_counter = NodePath("../../User Interface/Lost Blocks")
+[node name="kill_zone_right" parent="Objects" instance=ExtResource("5_li234")]
+position = Vector2(722, -456)
+rotation = 1.5708
+
+[node name="kill_zone_left" parent="Objects" instance=ExtResource("5_li234")]
+position = Vector2(-620, -457)
+rotation = 1.5708
 
 [node name="Main_Camera" type="Camera2D" parent="."]
 position = Vector2(31, 108)
@@ -61,3 +83,9 @@ offset_right = 362.0
 offset_bottom = -299.0
 text = "Blocks Lost: 0"
 script = ExtResource("8_ntdyd")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(111, 111)
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport"]
+texture = ExtResource("8_0go7v")
