@@ -1,14 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://cejyr1mb44esr"]
+[gd_scene load_steps=4 format=3 uid="uid://cejyr1mb44esr"]
 
 [ext_resource type="Texture2D" uid="uid://hyed7eb0akgl" path="res://Textures/BoxV1.png" id="1_m6oew"]
+[ext_resource type="Script" uid="uid://djepc3g7bcvfo" path="res://Scripts/box_script.gd" id="1_nqhoi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_metym"]
 size = Vector2(64, 64)
 
 [node name="Box_Test" type="RigidBody2D"]
+disable_mode = 2
+can_sleep = false
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_nqhoi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_m6oew")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_metym")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

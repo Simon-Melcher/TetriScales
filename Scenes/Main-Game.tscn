@@ -1,43 +1,30 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddhyph5djqsrc"]
+[gd_scene load_steps=8 format=3 uid="uid://ddhyph5djqsrc"]
 
-[ext_resource type="Script" uid="uid://clryc0fldl3cb" path="res://Scenes/main_game.gd" id="1_qxxgd"]
+[ext_resource type="Script" uid="uid://clryc0fldl3cb" path="res://Scripts/main_game.gd" id="1_qxxgd"]
 [ext_resource type="PackedScene" uid="uid://cejyr1mb44esr" path="res://Ressources/Box_Test.tscn" id="2_li234"]
 [ext_resource type="PackedScene" uid="uid://kwsbpinh6omt" path="res://Ressources/Long_Box_Test.tscn" id="3_mjuhr"]
-[ext_resource type="PackedScene" uid="uid://b2ty4vnhgxyer" path="res://Ressources/Cone.tscn" id="4_ntdyd"]
-[ext_resource type="PackedScene" uid="uid://dwq21s1gg17s" path="res://Ressources/Bouncy_Box.tscn" id="5_0go7v"]
-[ext_resource type="PackedScene" uid="uid://m1n40kyskpax" path="res://Ressources/KillZone.tscn" id="5_li234"]
-[ext_resource type="Script" uid="uid://ddsgmekxuksh0" path="res://Scenes/score.gd" id="7_mjuhr"]
-[ext_resource type="Script" uid="uid://bitv8h2q18r7f" path="res://Scenes/lost_blocks.gd" id="8_ntdyd"]
+[ext_resource type="PackedScene" uid="uid://b2ty4vnhgxyer" path="res://Ressources/cone.tscn" id="4_ntdyd"]
+[ext_resource type="PackedScene" uid="uid://m1n40kyskpax" path="res://Ressources/kill_zone.tscn" id="5_li234"]
+[ext_resource type="Script" uid="uid://bitv8h2q18r7f" path="res://Scripts/lost_blocks.gd" id="8_ntdyd"]
 
-[node name="Main-scene" type="Node2D"]
+[sub_resource type="GDScript" id="GDScript_li234"]
+script/source = "extends Label
+"
+
+[node name="Main-scene" type="Node2D" node_paths=PackedStringArray("ScoreLabel")]
 script = ExtResource("1_qxxgd")
 basic_block = ExtResource("2_li234")
+ScoreLabel = NodePath("User Interface/Score")
 
 [node name="Objects" type="Node" parent="."]
 
 [node name="Base_Plate" parent="Objects" instance=ExtResource("3_mjuhr")]
-position = Vector2(0, 230)
+position = Vector2(0, 365)
 mass = 10.0
 
-[node name="Box_Test" parent="Objects" instance=ExtResource("2_li234")]
-position = Vector2(100, 180)
-
-[node name="Box_Test2" parent="Objects" instance=ExtResource("2_li234")]
-physics_interpolation_mode = 2
-position = Vector2(-96, 180)
-
 [node name="Cone" parent="Objects" instance=ExtResource("4_ntdyd")]
-position = Vector2(0, 280)
+position = Vector2(0, 413)
 freeze = true
-
-[node name="Box_Test3" parent="Objects" instance=ExtResource("2_li234")]
-position = Vector2(-94, 113)
-
-[node name="Box_Test4" parent="Objects" instance=ExtResource("2_li234")]
-position = Vector2(98, 41)
-
-[node name="Box_Test5" parent="Objects" instance=ExtResource("2_li234")]
-position = Vector2(87, 112)
 
 [node name="KillZone" parent="Objects" node_paths=PackedStringArray("lost_block_counter") instance=ExtResource("5_li234")]
 position = Vector2(-433, 676)
@@ -45,10 +32,6 @@ lost_block_counter = NodePath("../../User Interface/Lost Blocks")
 
 [node name="Main_Camera" type="Camera2D" parent="."]
 position = Vector2(31, 108)
-
-[node name="Box_Test" parent="." instance=ExtResource("5_0go7v")]
-position = Vector2(-2, 96)
-linear_velocity = Vector2(0, -5)
 
 [node name="User Interface" type="Control" parent="."]
 layout_mode = 3
@@ -59,13 +42,13 @@ offset_bottom = 40.0
 [node name="Score" type="Label" parent="User Interface"]
 z_index = 10
 layout_mode = 0
-offset_left = -32.0
-offset_top = 278.0
-offset_right = 29.0
-offset_bottom = 301.0
+offset_left = -29.0
+offset_top = 465.0
+offset_right = 32.0
+offset_bottom = 488.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Score: 0"
-script = ExtResource("7_mjuhr")
+script = SubResource("GDScript_li234")
 
 [node name="Lost Blocks" type="Label" parent="User Interface"]
 layout_mode = 0
