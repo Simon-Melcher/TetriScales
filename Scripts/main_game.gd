@@ -41,9 +41,6 @@ func restart_scene():
 func close_game():
 	get_tree().quit()
 
-func _on_block_timer_timeout() -> void:
-	spawn_new_block()
-
 func instantiate_random_block() -> RigidBody2D:
 	# Pick a random Block scene
 	const blocks = [Block_1x1, Block_2x2_L, Block_3x1]
