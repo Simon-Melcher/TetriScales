@@ -9,6 +9,8 @@ extends Node2D
 @export var exit_button: Button
 @export var restart_button: Button
 
+var base_speed = 300
+
 var score = 0
 var score_multiplier = 1
 
@@ -89,6 +91,21 @@ func _physics_process(delta):
 				selected_block.linear_velocity.x = 0 
 	else:
 		spawn_new_block()
+
+	# currently, we do not allow to move the base
+	if false:
+		var base_velocity = 0
+		if Input.is_action_pressed("move_base_left"):
+			base_velocity -= 1
+		if Input.is_action_pressed("move_base_right"):
+			base_velocity += 1
+		if base_velocity != 0:
+			base_velocity = base_velocity * base_speed
+			$Objects/Base_Plate.position.x += delta * base_velocity
+			$Objects/StaticScaleBase.position.x += delta * base_velocity
+			$Objects/ScalePinJoint2D.position.x += delta * base_velocity
+
+		
 
 func increase_score_multiplier(amount: float):
 	score_multiplier += amount
