@@ -7,21 +7,19 @@ extends Node2D
 var score = 0
 var score_multiplier = 1
 
-const simple_block = preload("res://Ressources/Box_test.tscn")
-const small_l_piece = preload("res://Ressources/Box_test.tscn")
-const small_i_piece = preload("res://Ressources/Box_test.tscn")
-
 const Block_1x1 = preload("res://Scenes/block_1x1.tscn")
 const Block_2x2_L = preload("res://Scenes/block_2x2_l.tscn")
 const Block_3x1 = preload("res://Scenes/block_3x1.tscn")
 
 var selected_block = null
+var next_block = null
 
 func _ready() -> void:
 	var screen_size = get_tree().root.get_viewport().size
 	print("screen_size", screen_size)
 
 	GlobalSignals.spawn_newblock.connect(spawn_new_block)
+	next_block = instantiate_random_block()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	body.queue_free()
@@ -34,13 +32,14 @@ func instantiate_random_block() -> RigidBody2D:
 	# Pick a random Block scene
 	const blocks = [Block_1x1, Block_2x2_L, Block_3x1]
 	var block = blocks.pick_random()
+	
 	var b = block.instantiate()
 	return b
 	
 func spawn_new_block():
 	print("Spawning new Block")
 	#var b = simple_block.instantiate()
-	var b = instantiate_random_block()
+	var b = next_block
 	#b.position = event.position
 	#b.position = Vector2(randf_range(0, screen_size.x), 0)
 	#b.linear_velocity = Vector2.DOWN * 50
@@ -48,6 +47,7 @@ func spawn_new_block():
 	b.position = Vector2(0,-200)
 	selected_block = b
 	add_child(b)
+	next_block = instantiate_random_block()
 
 func _physics_process(delta):
 	if(selected_block != null):
