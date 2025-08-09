@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsgmxtpojg4d3"]
+[gd_scene load_steps=10 format=3 uid="uid://dsgmxtpojg4d3"]
 
-[ext_resource type="Script" uid="uid://dejvcd7j40ui4" path="res://Scripts/usage.gd" id="1_y5end"]
+[ext_resource type="Script" path="res://Scripts/usage.gd" id="1_y5end"]
 [ext_resource type="Texture2D" uid="uid://1jhdgpmie8ca" path="res://Ressources/keys/key_right.png" id="2_vcrcd"]
 [ext_resource type="Texture2D" uid="uid://djmg43v0dbuuh" path="res://Ressources/keys/text_move_left.png" id="3_diyo6"]
 [ext_resource type="Texture2D" uid="uid://8r2lrq10q1lb" path="res://Ressources/keys/text_move_right.png" id="4_lo7cb"]
 [ext_resource type="Texture2D" uid="uid://dknntxof52tdx" path="res://Ressources/keys/text_accel_0001.png" id="5_53u8t"]
 [ext_resource type="Texture2D" uid="uid://bxwdj33f6dbws" path="res://Ressources/keys/text_accel_0002.png" id="6_4j8lu"]
 [ext_resource type="Texture2D" uid="uid://dxm5sm3lyo4c8" path="res://Ressources/keys/text_rotate.png" id="7_hslwj"]
+[ext_resource type="PackedScene" uid="uid://cpjak7ahx5h23" path="res://Ressources/15x15 Background Tile.tscn" id="8_vcrcd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nuqgq"]
 animations = [{
@@ -63,3 +64,6 @@ frame_progress = 0.969443
 [node name="TextRotate" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(440, 800)
 texture = ExtResource("7_hslwj")
+
+[node name="Node2D" parent="." instance=ExtResource("8_vcrcd")]
+modulate = Color(0.306923, 0.306923, 0.306923, 1)
