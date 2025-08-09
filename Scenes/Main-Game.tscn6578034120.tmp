@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddhyph5djqsrc"]
+[gd_scene load_steps=11 format=3 uid="uid://ddhyph5djqsrc"]
 
 [ext_resource type="Script" uid="uid://clryc0fldl3cb" path="res://Scripts/main_game.gd" id="1_qxxgd"]
 [ext_resource type="Script" uid="uid://djepc3g7bcvfo" path="res://Scripts/box_script.gd" id="2_mjuhr"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://m1n40kyskpax" path="res://Ressources/kill_zone.tscn" id="5_li234"]
 [ext_resource type="PackedScene" uid="uid://b4leo8yxmxvy7" path="res://Ressources/scale_base.tscn" id="6_ntdyd"]
 [ext_resource type="PackedScene" uid="uid://cg2jfxm4m4f6u" path="res://Scenes/preview_sub_viewport_container.tscn" id="8_0go7v"]
+[ext_resource type="Script" uid="uid://bitv8h2q18r7f" path="res://Scripts/lost_blocks.gd" id="8_ntdyd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_metym"]
 size = Vector2(64, 64)
@@ -24,15 +25,12 @@ _bundled = {
 "version": 3
 }
 
-[node name="Main-scene" type="Node2D" node_paths=PackedStringArray("ScoreLabel", "LostBlockLabel", "game_over_label", "high_score_label", "exit_button", "restart_button")]
+[node name="Main-scene" type="Node2D" node_paths=PackedStringArray("ScoreLabel", "LostBlockLabel", "game_over_label")]
 script = ExtResource("1_qxxgd")
 basic_block = SubResource("PackedScene_0go7v")
 ScoreLabel = NodePath("User Interface/Score")
 LostBlockLabel = NodePath("User Interface/Lost Blocks")
 game_over_label = NodePath("User Interface/game_over_label")
-high_score_label = NodePath("User Interface/game_over_label/high_score_label")
-exit_button = NodePath("User Interface/Exit_Button")
-restart_button = NodePath("User Interface/Restart_Button")
 
 [node name="Objects" type="Node" parent="."]
 
@@ -51,9 +49,6 @@ rotation = 1.5708
 [node name="kill_zone_left" parent="Objects" instance=ExtResource("5_li234")]
 position = Vector2(-620, -360)
 rotation = 1.5708
-
-[node name="kill_zone_top" parent="Objects" instance=ExtResource("5_li234")]
-position = Vector2(-429, -547)
 
 [node name="StaticScaleBase" parent="Objects" instance=ExtResource("6_ntdyd")]
 position = Vector2(0, 480)
@@ -79,85 +74,35 @@ offset_left = -128.0
 offset_top = 478.0
 offset_right = 125.0
 offset_bottom = 588.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
 text = "Score: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Lost Blocks" type="Label" parent="User Interface"]
 layout_mode = 0
-offset_left = 183.0
-offset_top = -372.0
-offset_right = 508.0
-offset_bottom = -303.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 50
+offset_left = 257.0
+offset_top = -322.0
+offset_right = 362.0
+offset_bottom = -299.0
 text = "Blocks Lost: 0"
+script = ExtResource("8_ntdyd")
 
 [node name="game_over_label" type="Label" parent="User Interface"]
-z_index = 5
 layout_mode = 0
-offset_left = -448.0
-offset_top = -239.0
-offset_right = 512.0
-offset_bottom = 122.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
-theme_override_constants/outline_size = 10
+offset_left = -349.0
+offset_top = 48.0
+offset_right = 390.0
+offset_bottom = 324.0
 theme_override_font_sizes/font_size = 120
 text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="high_score_label" type="Label" parent="User Interface/game_over_label"]
-z_index = 5
-layout_mode = 0
-offset_left = -2.0
-offset_top = 325.0
-offset_right = 958.0
-offset_bottom = 655.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 120
-text = "Highscore : "
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Exit_Button" type="Button" parent="User Interface"]
-z_index = 5
-layout_mode = 0
-offset_left = -420.0
-offset_top = 384.0
-offset_right = -166.0
-offset_bottom = 566.0
-theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 70
-text = "EXIT"
-
-[node name="Restart_Button" type="Button" parent="User Interface"]
-z_index = 5
-layout_mode = 0
-offset_left = 195.0
-offset_top = 384.0
-offset_right = 471.0
-offset_bottom = 566.0
-theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 70
-text = "Restart"
-
 [node name="PreviewSubViewportContainer" parent="." instance=ExtResource("8_0go7v")]
 offset_left = -423.0
 offset_top = -335.0
 offset_right = -223.0
-offset_bottom = -113.0
-scale = Vector2(0.66, 0.66)
+offset_bottom = -135.0
+scale = Vector2(0.75, 0.75)

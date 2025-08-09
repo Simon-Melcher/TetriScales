@@ -7,6 +7,7 @@ size = Vector2(64, 64)
 
 [node name="base_plate" type="RigidBody2D"]
 disable_mode = 2
+mass = 20.0
 can_sleep = false
 continuous_cd = 1
 
