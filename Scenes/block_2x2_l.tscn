@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://wq87fuq6fc88" path="res://Ressources/block_2x2_L.png" id="1_nv6cg"]
 
 [node name="Block_2x2_L" type="RigidBody2D"]
+mass = 3.0
 script = ExtResource("1_fmuor")
 friendly_name = "Block 2x2L"
 metadata/_edit_group_ = true

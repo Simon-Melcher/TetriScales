@@ -7,6 +7,7 @@
 size = Vector2(192, 64)
 
 [node name="Block_3x1" type="RigidBody2D"]
+mass = 3.0
 script = ExtResource("1_54vaq")
 friendly_name = "Block 3x1"
 
