@@ -1,6 +1,10 @@
 extends RigidBody2D
 
+signal fade
+
 @export var friendly_name = "Block"
+@export var allow_random_rotation = true
+@export var allow_flip_h = false
 
 var detected_coliision = false
 var damp_angular_velocity = false
@@ -20,6 +24,8 @@ func _on_body_entered(body: Node) -> void:
 		GlobalSignals.play_block_sound.emit()
 		GlobalSignals.spawn_newblock.emit()
 		
+		fade.emit()
+			
 		if enable_angular_damping:
 			damp_angular_velocity = true
 			var timer = Timer.new()

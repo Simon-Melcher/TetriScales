@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfcasqpwb0jrl"]
 
-[ext_resource type="Script" path="res://Scripts/title.gd" id="1_w31pl"]
+[ext_resource type="Script" uid="uid://qlpjd58r6qx8" path="res://Scripts/title.gd" id="1_w31pl"]
 [ext_resource type="PackedScene" uid="uid://cpjak7ahx5h23" path="res://Ressources/15x15 Background Tile.tscn" id="2_ekrfg"]
 
 [node name="Title" type="Node2D"]
@@ -20,7 +20,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Credits" type="Label" parent="CanvasLayer"]
-anchors_preset = -1
 offset_left = 466.0
 offset_top = 853.0
 offset_right = 948.0

@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://dtilfgsgmgvj4"]
+
+[ext_resource type="Script" uid="uid://djepc3g7bcvfo" path="res://Scripts/box_script.gd" id="1_54vaq"]
+[ext_resource type="Texture2D" uid="uid://fh6ts62voufv" path="res://Ressources/block_3x1_gamedev_0004.png" id="2_8ugqm"]
+[ext_resource type="Texture2D" uid="uid://bui75sdpd52nr" path="res://Ressources/block_3x1_gamedev_0005.png" id="3_0g3w7"]
+[ext_resource type="Texture2D" uid="uid://cbgie4jprokcx" path="res://Ressources/block_3x1_gamedev_0001.png" id="3_k7vx6"]
+[ext_resource type="Texture2D" uid="uid://dadt36dhp465b" path="res://Ressources/block_3x1_gamedev_0003.png" id="4_no87y"]
+[ext_resource type="Texture2D" uid="uid://etrp4jh6sc7v" path="res://Ressources/block_3x1_gamedev_0006.png" id="4_qyxmn"]
+[ext_resource type="Texture2D" uid="uid://dnm0imx125r18" path="res://Ressources/block_3x1_gamedev_0002.png" id="5_8ugqm"]
+[ext_resource type="Script" uid="uid://d1nxfmlya3em0" path="res://Scenes/wizard_animsprite_2d.gd" id="8_0g3w7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idmxv"]
+size = Vector2(192, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0g3w7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8ugqm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0g3w7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qyxmn")
+}],
+"loop": false,
+"name": &"fade",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_k7vx6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_no87y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8ugqm")
+}],
+"loop": true,
+"name": &"ride",
+"speed": 7.0
+}]
+
+[node name="Block_3x1_Gamedev" type="RigidBody2D"]
+mass = 3.0
+script = ExtResource("1_54vaq")
+friendly_name = "Glitchy"
+allow_random_rotation = false
+allow_flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_idmxv")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -96)
+sprite_frames = SubResource("SpriteFrames_0g3w7")
+animation = &"fade"
+script = ExtResource("8_0g3w7")
+
+[connection signal="fade" from="." to="Sprite2D" method="_on_block_3x_1_gamedev_fade"]

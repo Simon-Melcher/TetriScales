@@ -22,6 +22,7 @@ var game_over = false
 const Block_1x1 = preload("res://Scenes/block_1x1.tscn")
 const Block_2x2_L = preload("res://Scenes/block_2x2_l.tscn")
 const Block_3x1 = preload("res://Scenes/block_3x1.tscn")
+const Block_3x1_gamedev = preload("res://Scenes/block_3x1_gamedev.tscn")
 const IcyBlock_1x1 = preload("res://Scenes/icy_block_1x1.tscn")
 
 var selected_block = null
@@ -48,13 +49,18 @@ func close_game():
 
 func instantiate_random_block() -> RigidBody2D:
 	# Pick a random Block scene
-	const blocks = [Block_1x1, Block_2x2_L, Block_3x1, Block_1x1, Block_2x2_L, Block_3x1, IcyBlock_1x1]
-	#const blocks = [Block_1x1, IcyBlock_1x1]
+	const blocks = [Block_1x1, Block_2x2_L, Block_3x1, Block_1x1, Block_2x2_L, Block_3x1, IcyBlock_1x1,
+		Block_1x1, Block_2x2_L, Block_3x1, Block_1x1, Block_2x2_L, Block_3x1, IcyBlock_1x1, Block_3x1_gamedev]
 	
 	var block = blocks.pick_random()
 	
 	var b = block.instantiate()
-	b.rotation = deg_to_rad(90*randi_range(0,4))
+	if b.allow_flip_h:
+		if randf() > 0.5:
+			b.get_node("Sprite2D").flip_h = true
+	if b.allow_random_rotation:
+		b.rotation = deg_to_rad(90*randi_range(0,4))
+		
 	return b
 
 func set_next_block(b):
