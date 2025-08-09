@@ -5,6 +5,7 @@
 
 [node name="Block_2x2_L" type="RigidBody2D"]
 script = ExtResource("1_fmuor")
+friendly_name = "Block 2x2L"
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

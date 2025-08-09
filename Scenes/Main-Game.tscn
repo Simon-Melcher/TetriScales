@@ -5,8 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://kwsbpinh6omt" path="res://Ressources/base_plate.tscn" id="3_mjuhr"]
 [ext_resource type="Texture2D" uid="uid://hyed7eb0akgl" path="res://Textures/BoxV1.png" id="3_ntdyd"]
 [ext_resource type="PackedScene" uid="uid://m1n40kyskpax" path="res://Ressources/kill_zone.tscn" id="5_li234"]
-[ext_resource type="PackedScene" uid="uid://b4leo8yxmxvy7" path="res://Ressources/scale_base.tscn" id="7_0go7v"]
-[ext_resource type="Texture2D" uid="uid://bdwe06rxq1ic" path="res://icon.svg" id="8_0go7v"]
+[ext_resource type="PackedScene" uid="uid://cg2jfxm4m4f6u" path="res://Scenes/preview_sub_viewport_container.tscn" id="8_0go7v"]
 [ext_resource type="Script" uid="uid://bitv8h2q18r7f" path="res://Scripts/lost_blocks.gd" id="8_ntdyd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_metym"]
@@ -86,8 +85,9 @@ offset_bottom = -299.0
 text = "Blocks Lost: 0"
 script = ExtResource("8_ntdyd")
 
-[node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(111, 111)
-
-[node name="Sprite2D" type="Sprite2D" parent="SubViewport"]
-texture = ExtResource("8_0go7v")
+[node name="PreviewSubViewportContainer" parent="." instance=ExtResource("8_0go7v")]
+offset_left = -423.0
+offset_top = -335.0
+offset_right = -223.0
+offset_bottom = -135.0
+scale = Vector2(0.75, 0.75)

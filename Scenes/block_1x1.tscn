@@ -9,6 +9,7 @@ size = Vector2(62, 62)
 [node name="Block_1x1" type="RigidBody2D"]
 can_sleep = false
 script = ExtResource("1_140cv")
+friendly_name = "Block 1x1"
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
