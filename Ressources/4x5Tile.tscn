@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0m8x2co1ndlb"]
+
+[ext_resource type="PackedScene" uid="uid://c201535vdxx46" path="res://Ressources/2x5 Tile.tscn" id="1_og7xn"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" parent="." instance=ExtResource("1_og7xn")]
+
+[node name="Node2D2" parent="." instance=ExtResource("1_og7xn")]
+position = Vector2(320, 256)
+rotation = 3.14159

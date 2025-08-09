@@ -13,6 +13,7 @@ config_version=5
 config/name="TetriScales"
 run/main_scene="uid://ddhyph5djqsrc"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0.237141, 0.00630806, 0.268137, 1)
 config/icon="res://icon.svg"
 
 [autoload]
@@ -55,3 +56,4 @@ move_down={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.883852, 0.82908, 0.994077, 1)

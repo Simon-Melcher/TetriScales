@@ -1,0 +1,187 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpjak7ahx5h23"]
+
+[ext_resource type="PackedScene" uid="uid://cwg08ofgunphw" path="res://Ressources/9x9 Tile.tscn" id="1_7osqf"]
+[ext_resource type="PackedScene" uid="uid://c201535vdxx46" path="res://Ressources/2x5 Tile.tscn" id="2_ltqc4"]
+[ext_resource type="PackedScene" uid="uid://djkryr4eg7vsc" path="res://Ressources/2x2 Tile.tscn" id="3_o3euo"]
+[ext_resource type="Texture2D" uid="uid://bxgf65ob4v7el" path="res://Ressources/block_3x1.png" id="4_c8g7p"]
+[ext_resource type="Texture2D" uid="uid://b7l4y6wo1xesq" path="res://Ressources/block_1x1.png" id="5_0vquy"]
+[ext_resource type="PackedScene" uid="uid://dd64vbkqcvsnj" path="res://Ressources/3x1Tile.tscn" id="6_ltqc4"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" parent="." instance=ExtResource("1_7osqf")]
+position = Vector2(320, 192)
+
+[node name="Node2D3" parent="." instance=ExtResource("2_ltqc4")]
+position = Vector2(640, 128)
+rotation = -3.14159
+
+[node name="Node2D2" parent="." instance=ExtResource("3_o3euo")]
+position = Vector2(640, 0)
+
+[node name="Node2D4" parent="." instance=ExtResource("3_o3euo")]
+position = Vector2(960, 320)
+rotation = -3.14159
+
+[node name="Node2D5" parent="." instance=ExtResource("3_o3euo")]
+position = Vector2(960, 0)
+rotation = 1.5708
+
+[node name="Block3x1" type="Sprite2D" parent="."]
+position = Vector2(480, 160)
+texture = ExtResource("4_c8g7p")
+
+[node name="Block3x2" type="Sprite2D" parent="."]
+position = Vector2(672, 160)
+texture = ExtResource("4_c8g7p")
+
+[node name="Block3x3" type="Sprite2D" parent="."]
+position = Vector2(864, 160)
+texture = ExtResource("4_c8g7p")
+
+[node name="Block1x1" type="Sprite2D" parent="."]
+position = Vector2(800, 96)
+texture = ExtResource("5_0vquy")
+
+[node name="Block1x2" type="Sprite2D" parent="."]
+position = Vector2(800, 32)
+texture = ExtResource("5_0vquy")
+
+[node name="Node2D6" parent="." instance=ExtResource("3_o3euo")]
+
+[node name="Node2D7" parent="." instance=ExtResource("3_o3euo")]
+position = Vector2(0, 320)
+rotation = -1.5708
+
+[node name="Node2D8" parent="." instance=ExtResource("3_o3euo")]
+position = Vector2(320, 0)
+rotation = 1.5708
+
+[node name="Block1x3" type="Sprite2D" parent="."]
+position = Vector2(160, 32)
+texture = ExtResource("5_0vquy")
+
+[node name="Block3x4" type="Sprite2D" parent="."]
+position = Vector2(288, 160)
+texture = ExtResource("4_c8g7p")
+
+[node name="Block3x5" type="Sprite2D" parent="."]
+position = Vector2(96, 160)
+texture = ExtResource("4_c8g7p")
+
+[node name="Block1x4" type="Sprite2D" parent="."]
+position = Vector2(160, 96)
+texture = ExtResource("5_0vquy")
+
+[node name="Node2D9" parent="." instance=ExtResource("2_ltqc4")]
+position = Vector2(128, 320)
+rotation = 1.5708
+
+[node name="Block3x6" type="Sprite2D" parent="."]
+position = Vector2(800, 480)
+rotation = -1.5708
+texture = ExtResource("4_c8g7p")
+
+[node name="Block3x7" type="Sprite2D" parent="."]
+position = Vector2(160, 480)
+rotation = 1.5708
+texture = ExtResource("4_c8g7p")
+
+[node name="Block1x5" type="Sprite2D" parent="."]
+position = Vector2(160, 224)
+texture = ExtResource("5_0vquy")
+
+[node name="Block1x6" type="Sprite2D" parent="."]
+position = Vector2(160, 288)
+texture = ExtResource("5_0vquy")
+
+[node name="Block1x7" type="Sprite2D" parent="."]
+position = Vector2(160, 352)
+texture = ExtResource("5_0vquy")
+
+[node name="Node2D10" parent="." instance=ExtResource("2_ltqc4")]
+position = Vector2(832, 640)
+rotation = -1.5708
+
+[node name="Block1x8" type="Sprite2D" parent="."]
+position = Vector2(800, 352)
+texture = ExtResource("5_0vquy")
+
+[node name="Block1x9" type="Sprite2D" parent="."]
+position = Vector2(800, 288)
+texture = ExtResource("5_0vquy")
+
+[node name="Block1x10" type="Sprite2D" parent="."]
+position = Vector2(800, 224)
+rotation = 1.5708
+texture = ExtResource("5_0vquy")
+
+[node name="Node2D11" parent="." instance=ExtResource("2_ltqc4")]
+position = Vector2(640, 960)
+rotation = -3.14159
+
+[node name="Block3x8" type="Sprite2D" parent="."]
+position = Vector2(480, 800)
+texture = ExtResource("4_c8g7p")
+
+[node name="Node2D12" parent="." instance=ExtResource("3_o3euo")]
+position = Vector2(0, 640)
+
+[node name="Node2D13" parent="." instance=ExtResource("3_o3euo")]
+position = Vector2(960, 640)
+rotation = 1.5708
+
+[node name="Node2D14" parent="." instance=ExtResource("3_o3euo")]
+position = Vector2(320, 960)
+rotation = -3.14159
+
+[node name="Node2D15" parent="." instance=ExtResource("3_o3euo")]
+position = Vector2(960, 960)
+rotation = -3.14159
+
+[node name="Node2D16" parent="." instance=ExtResource("3_o3euo")]
+position = Vector2(0, 960)
+rotation = -1.5708
+
+[node name="Node2D17" parent="." instance=ExtResource("3_o3euo")]
+position = Vector2(640, 832)
+
+[node name="Block3x9" type="Sprite2D" parent="."]
+position = Vector2(96, 800)
+texture = ExtResource("4_c8g7p")
+
+[node name="Block3x10" type="Sprite2D" parent="."]
+position = Vector2(288, 800)
+texture = ExtResource("4_c8g7p")
+
+[node name="Block3x11" type="Sprite2D" parent="."]
+position = Vector2(672, 800)
+texture = ExtResource("4_c8g7p")
+
+[node name="Block3x12" type="Sprite2D" parent="."]
+position = Vector2(864, 800)
+texture = ExtResource("4_c8g7p")
+
+[node name="Block1x11" parent="." instance=ExtResource("6_ltqc4")]
+position = Vector2(800, 608)
+rotation = 1.5708
+
+[node name="Block1x12" parent="." instance=ExtResource("6_ltqc4")]
+position = Vector2(160, 736)
+rotation = -1.5708
+
+[node name="Block1x13" type="Sprite2D" parent="."]
+position = Vector2(160, 864)
+texture = ExtResource("5_0vquy")
+
+[node name="Block1x14" type="Sprite2D" parent="."]
+position = Vector2(800, 864)
+texture = ExtResource("5_0vquy")
+
+[node name="Block1x15" type="Sprite2D" parent="."]
+position = Vector2(160, 928)
+texture = ExtResource("5_0vquy")
+
+[node name="Block1x16" type="Sprite2D" parent="."]
+position = Vector2(800, 928)
+texture = ExtResource("5_0vquy")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://chmqu76vwe1t0"]
+
+[ext_resource type="Texture2D" uid="uid://bxgf65ob4v7el" path="res://Ressources/block_3x1.png" id="1_h65ux"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Block3x1" type="Sprite2D" parent="."]
+position = Vector2(96, 32)
+texture = ExtResource("1_h65ux")
+
+[node name="Block3x2" type="Sprite2D" parent="."]
+position = Vector2(96, 96)
+texture = ExtResource("1_h65ux")
