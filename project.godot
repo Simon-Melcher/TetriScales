@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TetriScales"
-run/main_scene="uid://ddhyph5djqsrc"
+run/main_scene="uid://dfcasqpwb0jrl"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
