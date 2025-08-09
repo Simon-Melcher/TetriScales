@@ -117,8 +117,7 @@ rotation = 1.5708
 texture = ExtResource("5_0vquy")
 
 [node name="Node2D11" parent="." instance=ExtResource("2_ltqc4")]
-position = Vector2(640, 960)
-rotation = -3.14159
+position = Vector2(320, 832)
 
 [node name="Block3x8" type="Sprite2D" parent="."]
 position = Vector2(480, 800)
@@ -144,7 +143,8 @@ position = Vector2(0, 960)
 rotation = -1.5708
 
 [node name="Node2D17" parent="." instance=ExtResource("3_o3euo")]
-position = Vector2(640, 832)
+position = Vector2(640, 960)
+rotation = 4.71239
 
 [node name="Block3x9" type="Sprite2D" parent="."]
 position = Vector2(96, 800)
