@@ -12,7 +12,7 @@ script = ExtResource("1_jw67m")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
-size = Vector2i(200, 200)
+size = Vector2i(200, 222)
 render_target_update_mode = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="SubViewport"]

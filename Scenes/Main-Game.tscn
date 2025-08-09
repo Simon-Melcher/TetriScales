@@ -164,8 +164,6 @@ text = "Restart"
 offset_left = -423.0
 offset_top = -335.0
 offset_right = -223.0
-offset_bottom = -135.0
-scale = Vector2(0.75, 0.75)
 
 [node name="Node2D" parent="." instance=ExtResource("8_ntdyd")]
 modulate = Color(0.466181, 0.466181, 0.466181, 1)
