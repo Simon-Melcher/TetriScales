@@ -19,6 +19,7 @@ var game_over = false
 const Block_1x1 = preload("res://Scenes/block_1x1.tscn")
 const Block_2x2_L = preload("res://Scenes/block_2x2_l.tscn")
 const Block_3x1 = preload("res://Scenes/block_3x1.tscn")
+const IcyBlock_1x1 = preload("res://Scenes/icy_block_1x1.tscn")
 
 var selected_block = null
 var next_block = null
@@ -43,7 +44,9 @@ func close_game():
 
 func instantiate_random_block() -> RigidBody2D:
 	# Pick a random Block scene
-	const blocks = [Block_1x1, Block_2x2_L, Block_3x1]
+	const blocks = [Block_1x1, Block_2x2_L, Block_3x1, Block_1x1, Block_2x2_L, Block_3x1, IcyBlock_1x1]
+	#const blocks = [Block_1x1, IcyBlock_1x1]
+	
 	var block = blocks.pick_random()
 	
 	var b = block.instantiate()

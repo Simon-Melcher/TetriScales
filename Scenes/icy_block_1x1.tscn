@@ -1,20 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://bl1tegvn2o4k3"]
+[gd_scene load_steps=5 format=3 uid="uid://b3ble73537hlw"]
 
 [ext_resource type="Script" uid="uid://djepc3g7bcvfo" path="res://Scripts/box_script.gd" id="1_140cv"]
-[ext_resource type="Texture2D" uid="uid://b7l4y6wo1xesq" path="res://Ressources/block_1x1.png" id="1_afkvb"]
+[ext_resource type="Texture2D" uid="uid://bgklgafwk5i3j" path="res://Ressources/icy_block_1x1.png" id="2_clbpl"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_clbpl"]
+friction = 0.19
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oq5cr"]
 size = Vector2(62, 62)
 
-[node name="Block_1x1" type="RigidBody2D"]
+[node name="IcyBlock_1x1" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_clbpl")
 can_sleep = false
 script = ExtResource("1_140cv")
-friendly_name = "Block 1x1"
+friendly_name = "Icy Block 1x1"
 enable_angular_damping = true
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_afkvb")
+texture = ExtResource("2_clbpl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_oq5cr")
