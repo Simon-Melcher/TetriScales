@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddhyph5djqsrc"]
+[gd_scene load_steps=16 format=3 uid="uid://ddhyph5djqsrc"]
 
 [ext_resource type="Script" uid="uid://clryc0fldl3cb" path="res://Scripts/main_game.gd" id="1_qxxgd"]
 [ext_resource type="Script" uid="uid://djepc3g7bcvfo" path="res://Scripts/box_script.gd" id="2_mjuhr"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://c84asdt0erwig" path="res://Ressources/Suez Crisis.ogg" id="8_3iggu"]
 [ext_resource type="PackedScene" uid="uid://cpjak7ahx5h23" path="res://Ressources/15x15 Background Tile.tscn" id="8_ntdyd"]
 [ext_resource type="Shader" uid="uid://bf8opukbkwppe" path="res://Scenes/Main-Game.gdshader" id="9_0go7v"]
+[ext_resource type="Texture2D" uid="uid://c1k2wa2phbkry" path="res://Ressources/Preview_Border.png" id="10_k8o1r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_metym"]
 size = Vector2(64, 64)
@@ -192,6 +193,10 @@ offset_left = -464.0
 offset_top = -466.0
 offset_right = -264.0
 offset_bottom = -91.0
+
+[node name="PreviewBorder" type="Sprite2D" parent="PreviewSubViewportContainer"]
+position = Vector2(100, 111)
+texture = ExtResource("10_k8o1r")
 
 [node name="Background" parent="." instance=ExtResource("8_ntdyd")]
 modulate = Color(0.466181, 0.466181, 0.466181, 1)
