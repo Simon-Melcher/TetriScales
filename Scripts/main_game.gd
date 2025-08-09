@@ -1,7 +1,6 @@
 extends Node2D
 
 @export var basic_block: PackedScene
-
 @export var ScoreLabel: Label
 
 var score = 0
@@ -44,8 +43,8 @@ func spawn_new_block():
 	
 	var n = instantiate_random_block()
 	set_next_block(n)
-	
-	b.position = Vector2(0,-300)	selected_block = b
+	b.position = Vector2(0,-300)
+	selected_block = b
 	add_child(b)
 
 func _physics_process(delta):
