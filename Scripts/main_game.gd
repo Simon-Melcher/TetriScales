@@ -27,6 +27,7 @@ func instantiate_random_block() -> RigidBody2D:
 	var block = blocks.pick_random()
 	
 	var b = block.instantiate()
+	b.rotation = deg_to_rad(90*randi_range(0,4))
 	return b
 
 func set_next_block(b):
