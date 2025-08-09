@@ -8,6 +8,7 @@ extends Node2D
 
 @export var exit_button: Button
 @export var restart_button: Button
+@export var audio_player: AudioStreamPlayer
 
 var base_speed = 300
 
@@ -29,6 +30,7 @@ var next_block = null
 func _ready() -> void:
 	GlobalSignals.spawn_newblock.connect(spawn_new_block)
 	GlobalSignals.lost_block.connect(increase_lost_block_counter)
+	GlobalSignals.play_block_sound.connect(play_wood_sound)
 	game_over_label.visible = false
 	high_score_label.visible = false
 	exit_button.visible = false
@@ -81,7 +83,7 @@ func _physics_process(delta):
 			if Input.is_action_pressed("move_right"):
 				selected_block.apply_impulse(Vector2(10,0)) 
 			if Input.is_action_pressed("rotate_block"):
-				selected_block.apply_torque_impulse(50)
+				selected_block.apply_torque_impulse(300)
 			if Input.is_action_pressed("move_down"):
 				selected_block.apply_impulse(Vector2(0,+10)) 
 				score_multiplier += 0.01
@@ -109,6 +111,10 @@ func _physics_process(delta):
 
 func increase_score_multiplier(amount: float):
 	score_multiplier += amount
+
+func play_wood_sound():
+	if(!game_over):
+		audio_player.play()
 
 func increase_score():
 	if(!game_over):

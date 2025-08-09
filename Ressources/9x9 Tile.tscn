@@ -1,0 +1,119 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwg08ofgunphw"]
+
+[ext_resource type="PackedScene" uid="uid://c201535vdxx46" path="res://Ressources/2x5 Tile.tscn" id="1_krbjv"]
+[ext_resource type="Texture2D" uid="uid://wq87fuq6fc88" path="res://Ressources/block_2x2_L.png" id="2_au24q"]
+[ext_resource type="Texture2D" uid="uid://b7l4y6wo1xesq" path="res://Ressources/block_1x1.png" id="3_gsw3c"]
+[ext_resource type="PackedScene" uid="uid://djkryr4eg7vsc" path="res://Ressources/2x2 Tile.tscn" id="4_62va6"]
+
+[node name="Node2D" instance=ExtResource("1_krbjv")]
+position = Vector2(128, 0)
+
+[node name="Node2D" parent="." index="4" instance=ExtResource("1_krbjv")]
+position = Vector2(448, 128)
+rotation = 1.5708
+
+[node name="Node2D2" parent="." index="5" instance=ExtResource("1_krbjv")]
+position = Vector2(-128, 448)
+rotation = 4.71239
+
+[node name="Node2D3" parent="." index="6" instance=ExtResource("1_krbjv")]
+position = Vector2(320, 576)
+rotation = 3.14159
+
+[node name="Block2x2L3" type="Sprite2D" parent="Node2D3" index="4"]
+position = Vector2(-64, 64)
+rotation = 3.14159
+texture = ExtResource("2_au24q")
+
+[node name="Block1x2" type="Sprite2D" parent="Node2D3/Block2x2L3" index="0"]
+position = Vector2(32, 32)
+texture = ExtResource("3_gsw3c")
+
+[node name="Block2x2L4" type="Sprite2D" parent="Node2D3" index="5"]
+position = Vector2(384, 64)
+rotation = -1.5708
+texture = ExtResource("2_au24q")
+
+[node name="Block1x2" type="Sprite2D" parent="Node2D3/Block2x2L4" index="0"]
+position = Vector2(32, 32)
+rotation = 3.14159
+texture = ExtResource("3_gsw3c")
+
+[node name="Node2D" parent="Node2D3/Block2x2L4" index="1" instance=ExtResource("4_62va6")]
+position = Vector2(-384, -64)
+rotation = 1.5708
+
+[node name="Node2D2" parent="Node2D3/Block2x2L4" index="2" instance=ExtResource("4_62va6")]
+position = Vector2(-384, -384)
+rotation = 3.14159
+
+[node name="Block2x2L3" type="Sprite2D" parent="." index="7"]
+position = Vector2(256, 384)
+texture = ExtResource("2_au24q")
+
+[node name="Block2x2L4" type="Sprite2D" parent="." index="8"]
+position = Vector2(64, 384)
+rotation = 1.5708
+texture = ExtResource("2_au24q")
+
+[node name="Block2x2L5" type="Sprite2D" parent="." index="9"]
+position = Vector2(64, 192)
+rotation = 3.14159
+texture = ExtResource("2_au24q")
+
+[node name="Block2x2L6" type="Sprite2D" parent="." index="10"]
+position = Vector2(256, 192)
+rotation = 4.71239
+texture = ExtResource("2_au24q")
+
+[node name="Block1x2" type="Sprite2D" parent="." index="11"]
+position = Vector2(32, 416)
+texture = ExtResource("3_gsw3c")
+
+[node name="Block1x3" type="Sprite2D" parent="." index="12"]
+position = Vector2(288, 416)
+texture = ExtResource("3_gsw3c")
+
+[node name="Block1x4" type="Sprite2D" parent="." index="13"]
+position = Vector2(32, 160)
+texture = ExtResource("3_gsw3c")
+
+[node name="Block1x5" type="Sprite2D" parent="." index="14"]
+position = Vector2(288, 160)
+texture = ExtResource("3_gsw3c")
+
+[node name="Block1x6" type="Sprite2D" parent="." index="15"]
+position = Vector2(32, 288)
+texture = ExtResource("3_gsw3c")
+
+[node name="Block1x7" type="Sprite2D" parent="." index="16"]
+position = Vector2(96, 288)
+texture = ExtResource("3_gsw3c")
+
+[node name="Block1x8" type="Sprite2D" parent="." index="17"]
+position = Vector2(160, 416)
+texture = ExtResource("3_gsw3c")
+
+[node name="Block1x9" type="Sprite2D" parent="." index="18"]
+position = Vector2(160, 352)
+texture = ExtResource("3_gsw3c")
+
+[node name="Block1x10" type="Sprite2D" parent="." index="19"]
+position = Vector2(288, 288)
+texture = ExtResource("3_gsw3c")
+
+[node name="Block1x11" type="Sprite2D" parent="." index="20"]
+position = Vector2(224, 288)
+texture = ExtResource("3_gsw3c")
+
+[node name="Block1x12" type="Sprite2D" parent="." index="21"]
+position = Vector2(160, 288)
+texture = ExtResource("3_gsw3c")
+
+[node name="Block1x13" type="Sprite2D" parent="." index="22"]
+position = Vector2(160, 224)
+texture = ExtResource("3_gsw3c")
+
+[node name="Block1x14" type="Sprite2D" parent="." index="23"]
+position = Vector2(160, 160)
+texture = ExtResource("3_gsw3c")

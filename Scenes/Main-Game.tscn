@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddhyph5djqsrc"]
+[gd_scene load_steps=14 format=3 uid="uid://ddhyph5djqsrc"]
 
 [ext_resource type="Script" uid="uid://clryc0fldl3cb" path="res://Scripts/main_game.gd" id="1_qxxgd"]
 [ext_resource type="Script" uid="uid://djepc3g7bcvfo" path="res://Scripts/box_script.gd" id="2_mjuhr"]
@@ -6,7 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://hyed7eb0akgl" path="res://Textures/BoxV1.png" id="3_ntdyd"]
 [ext_resource type="PackedScene" uid="uid://m1n40kyskpax" path="res://Ressources/kill_zone.tscn" id="5_li234"]
 [ext_resource type="PackedScene" uid="uid://b4leo8yxmxvy7" path="res://Ressources/scale_base.tscn" id="6_ntdyd"]
+[ext_resource type="AudioStream" uid="uid://cvk4yomed22wf" path="res://Ressources/wood-block-105066.mp3" id="7_dqf7k"]
 [ext_resource type="PackedScene" uid="uid://cg2jfxm4m4f6u" path="res://Scenes/preview_sub_viewport_container.tscn" id="8_0go7v"]
+[ext_resource type="PackedScene" uid="uid://cpjak7ahx5h23" path="res://Ressources/15x15 Background Tile.tscn" id="8_ntdyd"]
+[ext_resource type="Shader" uid="uid://bf8opukbkwppe" path="res://Scenes/Main-Game.gdshader" id="9_0go7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_metym"]
 size = Vector2(64, 64)
@@ -24,7 +27,10 @@ _bundled = {
 "version": 3
 }
 
-[node name="Main-scene" type="Node2D" node_paths=PackedStringArray("ScoreLabel", "LostBlockLabel", "game_over_label", "high_score_label", "exit_button", "restart_button")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dqf7k"]
+shader = ExtResource("9_0go7v")
+
+[node name="Main-scene" type="Node2D" node_paths=PackedStringArray("ScoreLabel", "LostBlockLabel", "game_over_label", "high_score_label", "exit_button", "restart_button", "audio_player")]
 script = ExtResource("1_qxxgd")
 basic_block = SubResource("PackedScene_0go7v")
 ScoreLabel = NodePath("User Interface/Score")
@@ -33,11 +39,12 @@ game_over_label = NodePath("User Interface/game_over_label")
 high_score_label = NodePath("User Interface/game_over_label/high_score_label")
 exit_button = NodePath("User Interface/Exit_Button")
 restart_button = NodePath("User Interface/Restart_Button")
+audio_player = NodePath("Objects/Wood Sound Player")
 
 [node name="Objects" type="Node" parent="."]
 
 [node name="Base_Plate" parent="Objects" instance=ExtResource("3_mjuhr")]
-position = Vector2(1, 343)
+position = Vector2(0, 265)
 mass = 10.0
 
 [node name="kill_zone_below" parent="Objects" node_paths=PackedStringArray("lost_block_counter") instance=ExtResource("5_li234")]
@@ -56,29 +63,33 @@ rotation = 1.5708
 position = Vector2(-429, -547)
 
 [node name="StaticScaleBase" parent="Objects" instance=ExtResource("6_ntdyd")]
-position = Vector2(0, 480)
+position = Vector2(0, 400)
 
 [node name="ScalePinJoint2D" type="PinJoint2D" parent="Objects"]
-position = Vector2(1, 343)
+position = Vector2(1, 271)
 node_a = NodePath("../Base_Plate")
 node_b = NodePath("../StaticScaleBase")
 
+[node name="Wood Sound Player" type="AudioStreamPlayer" parent="Objects"]
+stream = ExtResource("7_dqf7k")
+
 [node name="Main_Camera" type="Camera2D" parent="."]
-position = Vector2(31, 108)
 
 [node name="User Interface" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+offset_left = -34.0
+offset_top = -103.0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Score" type="Label" parent="User Interface"]
 z_index = 10
 layout_mode = 0
-offset_left = -128.0
-offset_top = 478.0
-offset_right = 125.0
-offset_bottom = 588.0
+offset_left = -93.0
+offset_top = 494.0
+offset_right = 160.0
+offset_bottom = 604.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
 theme_override_constants/outline_size = 10
@@ -89,10 +100,10 @@ vertical_alignment = 1
 
 [node name="Lost Blocks" type="Label" parent="User Interface"]
 layout_mode = 0
-offset_left = 183.0
-offset_top = -372.0
-offset_right = 508.0
-offset_bottom = -303.0
+offset_left = 176.0
+offset_top = -365.0
+offset_right = 501.0
+offset_bottom = -296.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
 theme_override_constants/outline_size = 10
@@ -145,10 +156,10 @@ text = "EXIT"
 [node name="Restart_Button" type="Button" parent="User Interface"]
 z_index = 5
 layout_mode = 0
-offset_left = 195.0
-offset_top = 384.0
-offset_right = 471.0
-offset_bottom = 566.0
+offset_left = 218.0
+offset_top = 379.0
+offset_right = 494.0
+offset_bottom = 561.0
 theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
@@ -156,8 +167,13 @@ theme_override_font_sizes/font_size = 70
 text = "Restart"
 
 [node name="PreviewSubViewportContainer" parent="." instance=ExtResource("8_0go7v")]
-offset_left = -423.0
-offset_top = -335.0
-offset_right = -223.0
-offset_bottom = -113.0
-scale = Vector2(0.66, 0.66)
+offset_left = -464.0
+offset_top = -466.0
+offset_right = -264.0
+offset_bottom = -91.0
+
+[node name="Background" parent="." instance=ExtResource("8_ntdyd")]
+modulate = Color(0.466181, 0.466181, 0.466181, 1)
+z_index = -10
+material = SubResource("ShaderMaterial_dqf7k")
+position = Vector2(-480, -480)

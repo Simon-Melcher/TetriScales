@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://djkryr4eg7vsc"]
+
+[ext_resource type="Texture2D" uid="uid://wq87fuq6fc88" path="res://Ressources/block_2x2_L.png" id="1_uf001"]
+[ext_resource type="Texture2D" uid="uid://b7l4y6wo1xesq" path="res://Ressources/block_1x1.png" id="2_o8y5b"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Block2x2L" type="Sprite2D" parent="."]
+position = Vector2(64, 64)
+texture = ExtResource("1_uf001")
+
+[node name="Block1x1" type="Sprite2D" parent="."]
+position = Vector2(96, 96)
+texture = ExtResource("2_o8y5b")
