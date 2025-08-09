@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://clryc0fldl3cb" path="res://Scripts/main_game.gd" id="1_qxxgd"]
 [ext_resource type="PackedScene" uid="uid://cejyr1mb44esr" path="res://Ressources/Box_Test.tscn" id="2_li234"]
 [ext_resource type="PackedScene" uid="uid://kwsbpinh6omt" path="res://Ressources/Long_Box_Test.tscn" id="3_mjuhr"]
-[ext_resource type="PackedScene" uid="uid://b2ty4vnhgxyer" path="res://Ressources/cone.tscn" id="4_ntdyd"]
+[ext_resource type="PackedScene" uid="uid://b2ty4vnhgxyer" path="res://Ressources/Cone.tscn" id="4_ntdyd"]
 [ext_resource type="PackedScene" uid="uid://m1n40kyskpax" path="res://Ressources/kill_zone.tscn" id="5_li234"]
 [ext_resource type="Script" uid="uid://bitv8h2q18r7f" path="res://Scripts/lost_blocks.gd" id="8_ntdyd"]
 
