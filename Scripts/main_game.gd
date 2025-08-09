@@ -19,7 +19,8 @@ func _ready() -> void:
 	print("screen_size", screen_size)
 
 	GlobalSignals.spawn_newblock.connect(spawn_new_block)
-	next_block = instantiate_random_block()
+	var n = instantiate_random_block()
+	set_next_block(n)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	body.queue_free()
@@ -35,19 +36,25 @@ func instantiate_random_block() -> RigidBody2D:
 	
 	var b = block.instantiate()
 	return b
+
+func set_next_block(b):
+	next_block = b
+	if not b:
+		return
+		
+	$PreviewSubViewportContainer.set_next(next_block)
 	
 func spawn_new_block():
 	print("Spawning new Block")
-	#var b = simple_block.instantiate()
+	
 	var b = next_block
-	#b.position = event.position
-	#b.position = Vector2(randf_range(0, screen_size.x), 0)
-	#b.linear_velocity = Vector2.DOWN * 50
-	#add_child(b)
+	
+	var n = instantiate_random_block()
+	set_next_block(n)
+	
 	b.position = Vector2(0,-200)
 	selected_block = b
 	add_child(b)
-	next_block = instantiate_random_block()
 
 func _physics_process(delta):
 	if(selected_block != null):

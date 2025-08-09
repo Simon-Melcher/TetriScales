@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg2jfxm4m4f6u"]
+
+[ext_resource type="Script" uid="uid://cfxgpeb7plrmf" path="res://Scripts/preview_sub_viewport_container.gd" id="1_jw67m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0kexw"]
+size = Vector2(1566, 1324)
+
+[node name="PreviewSubViewportContainer" type="SubViewportContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_jw67m")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(200, 200)
+render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewport"]
+unique_name_in_owner = true
+
+[node name="LabelNextPart" type="Label" parent="SubViewport/CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -23.0
+offset_right = 37.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Block 1x1"
+
+[node name="LabelHead" type="Label" parent="SubViewport/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_right = 37.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Next"
+
+[node name="Area2D" type="Area2D" parent="SubViewport"]
+gravity_space_override = 3
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+gravity = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewport/Area2D"]
+position = Vector2(264, 249)
+shape = SubResource("RectangleShape2D_0kexw")

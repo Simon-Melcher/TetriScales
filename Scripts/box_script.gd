@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+@export var friendly_name = "Block"
+
 var detected_coliision = false
 
 func _ready() -> void:
