@@ -38,6 +38,11 @@ const IcyBlock_1x1 = preload("res://Scenes/icy_block_1x1.tscn")
 var selected_block = null
 var next_block = null
 
+@onready var steam_left: AnimatedSprite2D = $Objects/SteamLeft
+@onready var steam_right: AnimatedSprite2D = $Objects/SteamRight
+var modifier_steam_active = false
+
+
 func _ready() -> void:
 	GlobalSignals.spawn_newblock.connect(spawn_new_block)
 	GlobalSignals.lost_block.connect(increase_lost_block_counter)
@@ -52,7 +57,8 @@ func _ready() -> void:
 	var n = instantiate_random_block()
 	set_next_block(n)
 	adjustGravity(base_gravity)
-	
+	setupSteamModifier()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_mute"):
 		mute = not mute
@@ -120,6 +126,9 @@ func _physics_process(delta):
 				selected_block.linear_velocity.y = 0 
 			if Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right"):
 				selected_block.linear_velocity.x = 0 
+				
+			apply_steam(delta)
+				
 			if base_plate.global_rotation_degrees > 44:
 				base_plate.global_rotation_degrees = 44
 				print("Tilting Right")
@@ -141,6 +150,30 @@ func _physics_process(delta):
 			$Objects/Base_Plate.position.x += delta * base_velocity
 			$Objects/StaticScaleBase.position.x += delta * base_velocity
 			$Objects/ScalePinJoint2D.position.x += delta * base_velocity
+
+func apply_steam(delta):
+	if not modifier_steam_active or game_over:
+		steam_left.visible = false
+		steam_right.visible = false
+		return
+	
+	if Input.is_action_pressed("apply_force_left") or base_plate.global_rotation_degrees < -20:
+		steam_left.visible = true
+		steam_left.play()
+	if base_plate.global_rotation_degrees > -15:
+		steam_left.visible = false
+	
+	if steam_left.visible:
+		base_plate.apply_torque_impulse(delta*400000)
+		
+	if Input.is_action_pressed("apply_force_right") or base_plate.global_rotation_degrees > 20:
+		steam_right.visible = true
+		steam_right.play()
+	if base_plate.global_rotation_degrees < 15:
+		steam_right.visible = false
+		
+	if steam_right.visible:
+		base_plate.apply_torque_impulse(-delta*400000)
 
 func increase_score_multiplier(amount: float):
 	score_multiplier += amount
@@ -201,3 +234,25 @@ func load_score():
 	
 func adjustGravity (newGravityValue):
 	PhysicsServer2D.area_set_param(get_viewport().find_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY, newGravityValue)
+
+func setupSteamModifier():
+	var activateSteamTimer = Timer.new()
+	add_child(activateSteamTimer)
+	activateSteamTimer.one_shot = true
+	activateSteamTimer.timeout.connect(activateSteamModifier)
+	activateSteamTimer.start(randf_range(3,10))
+	#activateSteamTimer.start(1)
+	
+
+func activateSteamModifier():
+	modifier_steam_active = true;
+	var deactivateSteamTimer = Timer.new()
+	add_child(deactivateSteamTimer)
+	deactivateSteamTimer.one_shot = true
+	deactivateSteamTimer.timeout.connect(deactivateSteamModifier)
+	deactivateSteamTimer.start(randf_range(5,10))
+	
+	
+func deactivateSteamModifier():
+	modifier_steam_active = false;
+	setupSteamModifier()
