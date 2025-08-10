@@ -70,6 +70,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			print("UNMUTED")
 			bgmusic.play()
+			
+	if event.is_action_pressed("print"):
+		$ObjWriter.write()
+
 	
 func restart_scene():
 	get_tree().reload_current_scene()
@@ -99,6 +103,7 @@ func set_next_block(b):
 		return
 		
 	$PreviewSubViewportContainer.set_next(next_block)
+	
 	
 func spawn_new_block():
 	print("Spawning new Block")
