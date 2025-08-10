@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddhyph5djqsrc"]
+[gd_scene load_steps=17 format=3 uid="uid://ddhyph5djqsrc"]
 
 [ext_resource type="Script" uid="uid://clryc0fldl3cb" path="res://Scripts/main_game.gd" id="1_qxxgd"]
 [ext_resource type="Script" uid="uid://djepc3g7bcvfo" path="res://Scripts/box_script.gd" id="2_mjuhr"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://c84asdt0erwig" path="res://Ressources/Suez Crisis.ogg" id="8_3iggu"]
 [ext_resource type="PackedScene" uid="uid://cpjak7ahx5h23" path="res://Ressources/15x15 Background Tile.tscn" id="8_ntdyd"]
 [ext_resource type="Shader" uid="uid://bf8opukbkwppe" path="res://Scenes/Main-Game.gdshader" id="9_0go7v"]
+[ext_resource type="Texture2D" uid="uid://c1k2wa2phbkry" path="res://Ressources/Preview_Border.png" id="10_k8o1r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_metym"]
 size = Vector2(64, 64)
@@ -28,10 +29,13 @@ _bundled = {
 "version": 3
 }
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k8o1r"]
+rough = true
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dqf7k"]
 shader = ExtResource("9_0go7v")
 
-[node name="Main-scene" type="Node2D" node_paths=PackedStringArray("ScoreLabel", "LostBlockLabel", "game_over_label", "high_score_label", "high_score_info", "exit_button", "restart_button", "audio_player")]
+[node name="Main-scene" type="Node2D" node_paths=PackedStringArray("ScoreLabel", "LostBlockLabel", "game_over_label", "high_score_label", "high_score_info", "exit_button", "restart_button", "audio_player", "base_plate")]
 script = ExtResource("1_qxxgd")
 basic_block = SubResource("PackedScene_0go7v")
 ScoreLabel = NodePath("User Interface/Score")
@@ -42,12 +46,15 @@ high_score_info = NodePath("User Interface/Best_Score")
 exit_button = NodePath("User Interface/Exit_Button")
 restart_button = NodePath("User Interface/Restart_Button")
 audio_player = NodePath("Objects/Block Sound Player")
+base_plate = NodePath("Objects/Base_Plate")
 
 [node name="Objects" type="Node" parent="."]
 
 [node name="Base_Plate" parent="Objects" instance=ExtResource("3_mjuhr")]
 position = Vector2(0, 265)
 mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_k8o1r")
+gravity_scale = 0.5
 
 [node name="kill_zone_below" parent="Objects" node_paths=PackedStringArray("lost_block_counter") instance=ExtResource("5_li234")]
 position = Vector2(-427, 776)
@@ -192,6 +199,10 @@ offset_left = -464.0
 offset_top = -466.0
 offset_right = -264.0
 offset_bottom = -91.0
+
+[node name="PreviewBorder" type="Sprite2D" parent="PreviewSubViewportContainer"]
+position = Vector2(100, 111)
+texture = ExtResource("10_k8o1r")
 
 [node name="Background" parent="." instance=ExtResource("8_ntdyd")]
 modulate = Color(0.466181, 0.466181, 0.466181, 1)

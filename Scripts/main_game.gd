@@ -10,15 +10,19 @@ extends Node2D
 @export var exit_button: Button
 @export var restart_button: Button
 @export var audio_player: AudioStreamPlayer
+@export var base_plate: RigidBody2D
 
 var base_speed = 300
+var base_gravity = 100
 
 var score = 0
 var score_multiplier = 1
 var highscore
 
+var block_spawn_offset = -350
+
 var lost_blocks = 0
-var game_over_amount = 5
+var game_over_amount = 10
 var game_over = false
 
 var save_path = "user://score.save"
@@ -45,6 +49,7 @@ func _ready() -> void:
 	load_score()
 	var n = instantiate_random_block()
 	set_next_block(n)
+	adjustGravity(base_gravity)
 
 func restart_scene():
 	get_tree().reload_current_scene()
@@ -55,7 +60,7 @@ func close_game():
 func instantiate_random_block() -> RigidBody2D:
 	# Pick a random Block scene
 	const blocks = [Block_1x1, Block_2x2_L, Block_3x1, Block_1x1, Block_2x2_L, Block_3x1, IcyBlock_1x1,
-		Block_1x1, Block_2x2_L, Block_3x1, Block_1x1, Block_2x2_L, Block_3x1, IcyBlock_1x1, Block_3x1_gamedev]
+		Block_1x1, Block_2x2_L, Block_3x1, Block_1x1, Block_2x2_L, Block_3x1, Block_1x1, Block_3x1_gamedev]
 	
 	var block = blocks.pick_random()
 	
@@ -82,7 +87,7 @@ func spawn_new_block():
 	
 	var n = instantiate_random_block()
 	set_next_block(n)
-	b.position = Vector2(0,-300)
+	b.position = Vector2(0,block_spawn_offset)
 	selected_block = b
 	add_child(b)
 
@@ -94,7 +99,7 @@ func _physics_process(delta):
 			if Input.is_action_pressed("move_right"):
 				selected_block.apply_impulse(Vector2(10,0)) 
 			if Input.is_action_pressed("rotate_block"):
-				selected_block.apply_torque_impulse(300)
+				selected_block.apply_torque_impulse(-300)
 			if Input.is_action_pressed("move_down"):
 				selected_block.apply_impulse(Vector2(0,+10)) 
 				score_multiplier += 0.01
@@ -102,6 +107,12 @@ func _physics_process(delta):
 				selected_block.linear_velocity.y = 0 
 			if Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right"):
 				selected_block.linear_velocity.x = 0 
+			if base_plate.global_rotation_degrees > 44:
+				base_plate.global_rotation_degrees = 44
+				print("Tilting Right")
+			if base_plate.global_rotation_degrees < -44:
+				base_plate.global_rotation_degrees = -44
+				print("Tilting Left")
 	else:
 		spawn_new_block()
 
@@ -118,8 +129,6 @@ func _physics_process(delta):
 			$Objects/StaticScaleBase.position.x += delta * base_velocity
 			$Objects/ScalePinJoint2D.position.x += delta * base_velocity
 
-		
-
 func increase_score_multiplier(amount: float):
 	score_multiplier += amount
 
@@ -131,6 +140,8 @@ func increase_score():
 	if(!game_over):
 		score += 1 * score_multiplier
 		ScoreLabel.text = "Score: %s" % snapped(score,0.01)
+		base_gravity += 4
+		adjustGravity(base_gravity)
 
 func increase_lost_block_counter():
 	if(!game_over):
@@ -152,6 +163,7 @@ func _process(delta: float) -> void:
 		high_score_label.visible = true
 		exit_button.visible = true
 		restart_button.visible = true
+		block_spawn_offset = -300
 		for i in 5:
 			spawn_new_block()
 	if time > 0:
@@ -173,3 +185,6 @@ func load_score():
 		print("file not found")
 		highscore = 0
 	high_score_info.text = "Best Score: %s" % highscore
+	
+func adjustGravity (newGravityValue):
+	PhysicsServer2D.area_set_param(get_viewport().find_world_2d().space, PhysicsServer2D.AREA_PARAM_GRAVITY, newGravityValue)
