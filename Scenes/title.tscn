@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfcasqpwb0jrl"]
 
-[ext_resource type="Script" uid="uid://qlpjd58r6qx8" path="res://Scripts/title.gd" id="1_w31pl"]
+[ext_resource type="Script" path="res://Scripts/title.gd" id="1_w31pl"]
 [ext_resource type="PackedScene" uid="uid://cpjak7ahx5h23" path="res://Ressources/15x15 Background Tile.tscn" id="2_ekrfg"]
 [ext_resource type="AudioStream" uid="uid://dyl56veoj1mcw" path="res://Ressources/tetriscales_ttsmaker-file-2025-8-10-9-43-11.mp3" id="3_fp2oq"]
 

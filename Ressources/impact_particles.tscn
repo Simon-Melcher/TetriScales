@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://b45d2rjjsamqo"]
+
+[sub_resource type="Curve" id="Curve_541bp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Impact_Particles" type="CPUParticles2D"]
+show_behind_parent = true
+top_level = true
+z_index = 100
+emitting = false
+amount = 80
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.6
+randomness = 1.0
+fixed_fps = 60
+local_coords = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 20.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_541bp")
+color = Color(0.099986, 0.099986, 0.099986, 1)
