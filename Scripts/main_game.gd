@@ -12,6 +12,8 @@ extends Node2D
 @export var audio_player: AudioStreamPlayer
 @export var base_plate: RigidBody2D
 
+var mute = false
+
 var base_speed = 300
 var base_gravity = 100
 
@@ -50,7 +52,18 @@ func _ready() -> void:
 	var n = instantiate_random_block()
 	set_next_block(n)
 	adjustGravity(base_gravity)
-
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_mute"):
+		mute = not mute
+		var bgmusic : AudioStreamPlayer = $"Objects/Background Music"
+		if mute:
+			print("MUTED!")
+			bgmusic.stop()
+		else:
+			print("UNMUTED")
+			bgmusic.play()
+	
 func restart_scene():
 	get_tree().reload_current_scene()
 
@@ -133,7 +146,7 @@ func increase_score_multiplier(amount: float):
 	score_multiplier += amount
 
 func play_wood_sound():
-	if(!game_over):
+	if !game_over and !mute:
 		audio_player.play()
 
 func increase_score():
