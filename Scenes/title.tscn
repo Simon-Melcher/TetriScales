@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfcasqpwb0jrl"]
+[gd_scene load_steps=4 format=3 uid="uid://dfcasqpwb0jrl"]
 
 [ext_resource type="Script" uid="uid://qlpjd58r6qx8" path="res://Scripts/title.gd" id="1_w31pl"]
 [ext_resource type="PackedScene" uid="uid://cpjak7ahx5h23" path="res://Ressources/15x15 Background Tile.tscn" id="2_ekrfg"]
+[ext_resource type="AudioStream" uid="uid://dyl56veoj1mcw" path="res://Ressources/tetriscales_ttsmaker-file-2025-8-10-9-43-11.mp3" id="3_fp2oq"]
 
 [node name="Title" type="Node2D"]
 script = ExtResource("1_w31pl")
@@ -38,5 +39,9 @@ one_shot = true
 autostart = true
 
 [node name="Background_Tile" parent="." instance=ExtResource("2_ekrfg")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fp2oq")
+autoplay = true
 
 [connection signal="timeout" from="TimerAutostartPLACEHOLDER" to="." method="_on_timer_autostart_placeholder_timeout"]
