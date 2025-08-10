@@ -42,6 +42,7 @@ func _ready() -> void:
 	GlobalSignals.spawn_newblock.connect(spawn_new_block)
 	GlobalSignals.lost_block.connect(increase_lost_block_counter)
 	GlobalSignals.play_block_sound.connect(play_wood_sound)
+	GlobalSignals.game_over_screen = false
 	game_over_label.visible = false
 	high_score_label.visible = false
 	exit_button.visible = false
@@ -168,6 +169,7 @@ var time = time_out
 func _process(delta: float) -> void:
 	if lost_blocks >= game_over_amount and false == game_over:
 		game_over = true
+		GlobalSignals.game_over_screen = true
 		game_over_label.visible = true
 		var current_score = snapped(score,0.01)
 		high_score_label.text = "HighScore: %s" % current_score
@@ -185,9 +187,9 @@ func _process(delta: float) -> void:
 		time = time_out
 		increase_score()
 
-func save_score(highscore):
+func save_score(score_to_save):
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.store_var(highscore)
+	file.store_var(score_to_save)
 
 func load_score():
 	if FileAccess.file_exists(save_path):
